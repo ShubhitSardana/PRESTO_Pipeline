@@ -26,4 +26,4 @@ PRESTO installed on your machine and all the requirements should be satisfied
 Leave it and come after a week or so (depending upon your data maybe less maybe more). _**And you are done!!!**_
 
 
-**Any suggestions and questions are welcomed :)**
+**Feel free to share your suggestions and ask any questions. :)**
