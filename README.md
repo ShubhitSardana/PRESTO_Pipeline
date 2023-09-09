@@ -1,14 +1,14 @@
 # PRESTO_Pipeline
 This is a PRESTO pipeline for the Giant Meterwave Radio Telescope to detect pulsars developed by me for pc and server use
 
-
+**INTRO to Repo**
 This repository contains 5 files but for a machine you will be requiring only 4
 1. organize.py
 2. launch.py
 3. config.txt
 4. main.py (personal_computer/server)
 
-INSTRUCTIONS
+**INSTRUCTIONS**
 
 Now if you want to use this pipeline you should copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py file to main.py.
 Now run organize.py first. It executes quickly as it only organizes the files into subdirectories.
