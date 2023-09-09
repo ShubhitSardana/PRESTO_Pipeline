@@ -1,0 +1,16 @@
+Azimuth = 0
+Zenith Ang = 0
+Sample time = 0.000256              
+Central freq = 333              
+Low channel = 325.03125        
+High channel = 340.96875        
+Channel width = 0.0625           
+Number of channels = 256
+Total Bandwidth = 16               
+Time per file = 1809.315328
+bits per sample = 16
+bytes per spectra = 512
+samples per spectra = 256
+zero offset = 0                
+bytes in file header = 326
+Number of Subbands = 256
