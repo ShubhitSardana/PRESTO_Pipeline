@@ -11,7 +11,8 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 
 **Requirements:**
 PRESTO installed on your machine and all the requirements should be satisfied
-****NOTE: This pipeline doesnot uses rfifind and subsequently mask every file but uses rficlean****
+
+**_NOTE_: This pipeline doesnot uses rfifind and subsequently mask every file but uses rficlean**
 
 **INSTRUCTIONS**
 
@@ -26,4 +27,4 @@ PRESTO installed on your machine and all the requirements should be satisfied
 Leave it and come after a week or so (depending upon your data maybe less maybe more). _**And you are done!!!**_
 
 
-**Feel free to share your suggestions and ask any questions. :)**
+_**Feel free to share your suggestions and ask any questions. :)**_
