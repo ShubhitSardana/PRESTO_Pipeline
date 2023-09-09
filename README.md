@@ -17,4 +17,4 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 
 **Step 3:** After that execute launch.py file and it will sequentially execute main.py file in each of the subdiectories
 
-Come after a week or so (depending upon your data maybe less maybe more). And you are done!!!
+Leave it and come after a week or so (depending upon your data maybe less maybe more). _**And you are done!!!**_
