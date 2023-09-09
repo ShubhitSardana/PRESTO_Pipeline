@@ -11,10 +11,12 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 
 **INSTRUCTIONS**
 
-**Step 1:** Now if you want to use this pipeline fork this rep[o and copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py file to main.py.
+**Step 1:** Now if you want to use this pipeline fork this rep[o and copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py depending on your machine file to main.py.
 
-**Step 2:** Now run organize.py first. It executes quickly as it only organizes the files into subdirectories. After this you get a window to change the config.txt file present in each of the subdirectories (its is not a problem if you leave it as it is).
+**Step 2:** Go through the code in main.py... It is very easy to understand, you might be required to change some of the things as I have made this for my pc and the server I use, so make the required changes and you are done with all the tweakings needed. 
 
-**Step 3:** After that execute launch.py file and it will sequentially execute main.py file in each of the subdiectories
+**Step 3:** Now run organize.py first. It executes quickly as it only organizes the files into subdirectories. After this you get a window to change the config.txt file present in each of the subdirectories (its is not a problem if you leave it as it is).
+
+**Step 4:** After that execute launch.py file and it will sequentially execute main.py file in each of the subdiectories
 
 Leave it and come after a week or so (depending upon your data maybe less maybe more). _**And you are done!!!**_
