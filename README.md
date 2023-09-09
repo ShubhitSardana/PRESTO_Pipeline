@@ -9,9 +9,13 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 3. config.txt
 4. main.py (personal_computer/server)
 
+**Requirements:**
+PRESTO installed on your machine and all the requirements should be satisfied
+****NOTE: This pipeline doesnot uses rfifind and subsequently mask every file but uses rficlean****
+
 **INSTRUCTIONS**
 
-**Step 1:** Now if you want to use this pipeline fork this rep[o and copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py depending on your machine file to main.py.
+**Step 1:** If you want to use this pipeline fork this repository and copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py depending on your machine file to main.py.
 
 **Step 2:** Go through the code in main.py... It is very easy to understand, you might be required to change some of the things as I have made this for my pc and the server I use (the server that I use doesnot have TEMPO installed on it so to not cause any problem because of that the server code is tweaked, If you have same situation you can also use it without much tweaking), make the required changes and you are done with all the tweakings needed. 
 
@@ -22,4 +26,4 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 Leave it and come after a week or so (depending upon your data maybe less maybe more). _**And you are done!!!**_
 
 
-**Any suggestions and questions are welcomed :) **
+**Any suggestions and questions are welcomed :)**
