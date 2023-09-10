@@ -16,7 +16,7 @@ PRESTO installed on your machine and all the requirements should be satisfied
 
 **INSTRUCTIONS**
 
-**Step 1:** If you want to use this pipeline fork this repository and copy all of these files in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py depending on your machine file to main.py.
+**Step 1:** If you want to use this pipeline copy all of these files of this repository in the folder containing filterbank files (.fil), after that change the name of main_server.py, main_pc.py depending on your machine file to main.py.
 
 **Step 2:** Go through the code in main.py... It is very easy to understand, you might be required to change some of the things as I have made this for my pc and the server I use (the server that I use doesnot have TEMPO installed on it so to not cause any problem because of that the server code is tweaked, If you have same situation you can also use it without much tweaking), make the required changes and you are done with all the tweakings needed. 
 
