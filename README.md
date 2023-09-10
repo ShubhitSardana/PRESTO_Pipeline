@@ -1,5 +1,5 @@
 # PRESTO_Pipeline
-This is a PRESTO pipeline for the Giant Meterwave Radio Telescope to detect pulsars developed by me for pc and server use
+This is a PRESTO pipeline to detect pulsars for the Giant Meterwave Radio Telescope developed by me for pc and server use, but you too can with some tweaks...
 
 **INTRO to Repo**
 
@@ -12,7 +12,7 @@ This repository contains 5 files but for your machine (be it a server or pc) you
 **Requirements:**
 PRESTO installed on your machine and all the requirements should be satisfied
 
-**_NOTE_: This pipeline doesnot uses rfifind and subsequently mask every file but uses rficlean**
+**_NOTE_: This pipeline doesnot uses rfifind to subsequently mask every file but uses rficlean**
 
 **INSTRUCTIONS**
 
