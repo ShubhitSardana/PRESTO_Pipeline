@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(filename='log.txt', level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s: %(message)s')
 
-# Function building
+# ----Basic Functions---- #
 
 # create directory
 def create_directory(directory_path):
@@ -18,7 +18,7 @@ def create_directory(directory_path):
         print("Directory created successfully.")
     except OSError as e:
         print("Directory creation failed:", e)
-# create_directory("./mum")
+
 
 # moving files to a directory
 def move_files_to_dir(source_dir, target_dir, extension):
@@ -39,19 +39,17 @@ def move_files_to_dir(source_dir, target_dir, extension):
             print(f"Moved {file} to {target_dir}")
         except Exception as e:
             print(f"Failed to move {file}: {e}")
-# move_files_to_dir("./", "./mum", "config.txt")
 
 
 # to get the name of filterbank file
-def get_filenames(directory):
+def get_filenames(directory, n):
     logging.info('Executing get_filenames function')
     txt_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith('.fil'):
                 txt_files.append(file)
-    return txt_files[0]
-# print(get_filenames("./")
+    return txt_files[n]
 
 
 # reading config data
@@ -73,74 +71,21 @@ def read_config_data(option):
             value = None
         
         return value
-# print(read_config_data("Name"))
+    
 
-
-
-# PRESTO Functions
+# ----PRESTO Commands---- #
 
 # rficlean
 def rficlean():
     logging.info('Executing rficlean')
-    filename = get_filenames("./")
-    command = f"rficlean -o clean.fil {filename}"
+    filename = get_filenames("./", 0)
+    command = f"rficlean -o {filename[0:-4:1]}_clean.fil {filename}"
 
     try:
         subprocess.run(command, shell=True, check=True)
         print("Command executed successfully.")
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
-# rficlean()
-
-
-# prepdata
-def prepdata():
-    logging.info('Executing prepdata')
-
-    filename = "clean.fil"
-    command = f"prepdata -nobary -dm 0.0 -o pd {filename}"
-
-    try:
-        subprocess.run(command, shell=True, check=True)
-        print("Command executed successfully.")
-    except subprocess.CalledProcessError as e:
-        print("Command execution failed:", e)
-# prepdata()
-
-
-# realfft
-def realfft():
-    logging.info('Executing realfft')
-    filename = "pd.dat"
-    command = f"realfft {filename}"
-
-    try:
-        subprocess.run(command, shell=True, check=True)
-        print("Command executed successfully.")
-    except subprocess.CalledProcessError as e:
-        print("Command execution failed:", e)
-# realfft()
-
-
-# accelsearch
-def accelsearch():
-    logging.info('Executing accelsearch')
-    filename = "pd.dat"
-    command = f"accelsearch -numharm 4 -zmax 0 {filename}"
-
-    try:
-        subprocess.run(command, shell=True, check=True)
-        print("Command executed successfully.")
-    except subprocess.CalledProcessError as e:
-        print("Command execution failed:", e)
-
-    # Moving files to respective directories
-    move_files_to_dir("./", "./prepdata_output", "pd.dat")
-    move_files_to_dir("./", "./prepdata_output", "pd.fft")
-    move_files_to_dir("./", "./prepdata_output", "pd.inf")
-    move_files_to_dir("./", "./prepdata_output/candidate_files", "pd_ACCEL_0")
-    move_files_to_dir("./", "./prepdata_output/candidate_files", "pd_ACCEL_0.cand")
-# accelsearch()
 
 
 # ddplan 
@@ -152,9 +97,9 @@ def ddplan():
         t = read_config_data("Sample time")
         f = read_config_data("Central freq")
         s = read_config_data("Number of Subbands")
-        
+        filename = get_filenames("./", 1)
         # Create the command with the current pair of files
-        command = ['DDplan.py', '-d', '1000', '-n', f'{n}', '-b', f'{b}', '-t', f'{t}', '-f', f'{f}', '-s', f'{s}', '-w', 'clean.fil']
+        command = ['DDplan.py','-d', '1000', '-n', f'{n}', '-b', f'{b}', '-t', f'{t}', '-f', f'{f}', '-s', f'{s}', '-w', f'{filename[::1]}']
 
         # Run the command
         process = subprocess.Popen(command, stdin=subprocess.PIPE)
@@ -163,7 +108,6 @@ def ddplan():
 
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)        
-# ddplan()
 
 
 # Replace word in dedisp file
@@ -193,29 +137,16 @@ def replace_word_in_file(input_path, output_path, word, replacement_word):
 def dedisp():
     logging.info('Executing dedisp')
     try:
+        filename = get_filenames("./", 1)
+        replace_word_in_file(f"./dedisp_{filename[0:-4:1]}.py", "./dedisp.py", "prepsubband", "prepsubband -nobary")
         command = f"python3 dedisp.py"    
         subprocess.run(command, shell=True, check=True)
         print("Command executed successfully.")
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
-# dedisp()
 
 
-# prepsubband
-# def prepsubband():
-#     logging.info('Executing prepsubband')
-#     command = "prepsubband -nobary -nsub 8 -lodm 0.0 -dmstep 0.1 -downsamp 1 -numdms 6 -o psb clean.fil"
- 
-#     try:
-#         subprocess.run(command, shell=True, check=True)
-#         print("Command executed successfully.")
-#     except subprocess.CalledProcessError as e:
-#         print("Command execution failed:", e)
-# # prepsubband()
-
-
-# realfft
-def run_realfft():
+def realfft():
     logging.info('Executing run_realfft')
     command = "realfft *.dat"
  
@@ -224,11 +155,10 @@ def run_realfft():
         print("Command executed successfully.")
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
-# run_realfft()
 
 
 # accelsearch
-def run_accelsearch():
+def accelsearch():
     logging.info('Executing run_accelsearch')
     command = "ls *.fft | xargs -n 1 accelsearch"
  
@@ -268,7 +198,6 @@ def change_encoding(file_extension):
             except Exception as e:
                 print(f"Error occurred while converting file '{filename}': {str(e)}")
                 continue
-# change_encoding()
 
 
 # accelsift
@@ -281,7 +210,6 @@ def accelsift():
         print("Command executed successfully.")
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
-# accelsift()
 
 
 # prepfold
@@ -306,23 +234,6 @@ def prepfold(cand_dir, dat_dir):
         process.wait()
 
 
-# def clean_all():
-#     try:
-#         move_files_to_dir("./prepsubband_output", "./", ".inf")
-#         move_files_to_dir("./candidate_files", "./", "00")
-#         move_files_to_dir("./prepsubband_output", "./", ".dat")
-#         move_files_to_dir("./prepsubband_output/realfft_output", "./", ".fft")
-#         move_files_to_dir("./candidate_files", "./", ".cand")
-#         move_files_to_dir("./candidate_files", "./", ".txtcand") 
-#         move_files_to_dir("./rficlean_output", "./", "clean.fil")
-#         move_files_to_dir("./rficlean_output", "./", ".pdat")
-#         move_files_to_dir("./rficlean_output", "./", ".ps")
-
-#     except Exception as e:
-#         pass
-
-
-# cleaning files
 def clean_all():
     logging.info('Executing clean_all function')
     try:
@@ -340,27 +251,23 @@ def clean_all():
         move_files_to_dir("./", "./rficlean_output/ps_output", "rficlean_output.ps")
         # prepfold output
         move_files_to_dir("./", "./prepfold_output", ".pfd")
-        move_files_to_dir("./", "./prepfold_output", ".pfd.ps")
+        move_files_to_dir("./", "./prepfold_output/postscript", ".pfd.ps")
         move_files_to_dir("./", "./prepfold_output", "pfd.bestprof")
 
     except Exception as e:
         pass
-# clean_all()
 
+
+# ---- Function Calling---- #
 
 if __name__ == "__main__":
     try:
         logging.info('Starting program execution')
         rficlean()
-        prepdata()
+        ddplan()
+        dedisp()
         realfft()
         accelsearch()
-        ddplan()
-        replace_word_in_file("./dedisp_clean.py", "./dedisp.py", "prepsubband", "prepsubband -nobary")
-        dedisp()
-        #prepsubband()
-        run_realfft()
-        run_accelsearch()
         change_encoding("_200")
         accelsift()
         prepfold("./", "./")
