@@ -205,7 +205,7 @@ def change_encoding(file_extension):
 # accelsift
 def accelsift():
     logging.info('Executing accelsift')
-    command = "python3 /data1/mpsurnis/soft/presto/examplescripts/ACCEL_sift.py" 
+    command = "python3 <path to ACCEL_sift.py>" 
 
     try:
         subprocess.run(command, shell=True, check=True)
