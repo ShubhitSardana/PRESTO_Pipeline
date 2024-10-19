@@ -1,4 +1,4 @@
-# PRESTO_Pipeline
+# Pulsar Search Pipeline
 This is a PRESTO pipeline to detect pulsars for the Giant Meterwave Radio Telescope developed by me for pc and server use, but you too can with some tweaks...
 
 **INTRO to Repo**
